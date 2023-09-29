@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NgContentContainerOutletComponent {
 
+  
   studentList: any[] = [
     {
       id: 1,

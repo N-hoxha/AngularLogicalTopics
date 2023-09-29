@@ -16,11 +16,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
+                        <td>1</td> 
                         <td>Sachin</td>
                         <td>9988776655</td>
                         <td>Mumbai</td>
-                    </tr>
+                    </tr>  
                     <tr>
                         <td>2</td>
                         <td>Saurabh</td>
@@ -48,6 +48,8 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- ng-container -> eshte i ngjashem si div por perfaqeson nje trup te vetem, ku edhe pse mund te kemi 100 funksjone 
+                    brenda tij, ne mund ta shfaqim ose ta baj te fshehur me ndimen e *ngif  -->
                 <ng-container *ngIf="isLoader">
                     <tr>
                         <td colspan="4">
@@ -65,7 +67,7 @@
                 </ng-container>
                 <ng-container *ngIf="!isLoader">
                     <ng-container *ngFor="let item of studentList">
-                        <tr  *ngIf="item.state == 'MH'">
+                        <tr >
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.state}}</td>
@@ -78,27 +80,31 @@
     </div>
     <div class="col-3 bg-secondary">
 
-        <div class="card">
-            <div class="card-body">
-                <div *ngTemplateOutlet="loader">
 
-                </div>
-                <div *ngTemplateOutlet="loader2">
-                    
-                </div>
+        <div class="card"> <!-- po ta vem re ky div eshte nje card -->
+            <div class="card-body"> <!-- ku brenda div kemi shtuar  #loader dhe #loader2 -->
+<!-- nese i fshim te dyja, azgje nuk shfaqet ne ekran, sepse ng-template perfaqeson nje trup mevete ku shfaqet me ndimen e *ngTemplateOutlet -->
+                <div *ngTemplateOutlet="loader2"></div> 
+                <div *ngTemplateOutlet="loader2"></div>
+
+                <div *ngTemplateOutlet="loader"></div> 
+                <div *ngTemplateOutlet="loader"></div>
             </div>
         </div>
-        <ng-template #loader>
-            <div class="spinner-border"></div>
-        </ng-template>
-        <ng-template #loader2>
-            <button class="btn btn-primary">
-                <span class="spinner-border spinner-border-sm"></span>
-                Loading..
-              </button>
-        </ng-template>
     </div>
     <div class="col-3">
 
     </div>
 </div>
+
+ <!-- nese fshim te gjitha ng-template dhe lem vetem div do na shfaqen figurat, nese i kemi keshtu nuk do na shfaqen  -->
+ <!-- pra ne krijojme trupe te pavarura brenda html, per ti perdorrur ato ne vende te dryshme, pa perseritur copy paste code te njeta   -->
+ <ng-template #loader> 
+    <div class="spinner-border"></div>
+</ng-template>
+<ng-template #loader2>
+    <button class="btn btn-primary">
+        <span class="spinner-border spinner-border-sm"></span>
+        Loading..
+      </button>
+</ng-template>

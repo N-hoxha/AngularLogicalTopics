@@ -27,3 +27,39 @@
 <div class="container-fluid mt-3">
   <router-outlet></router-outlet>
 </div>
+
+<!--------------------------------------------------------------------------->
+
+<ng-template #loading> 
+  <button class="tab-button" 
+          (click)="login()">{{loginText}}</button>
+  <button class="tab-button" 
+          (click)="signUp()">{{signUpText}}</button>
+</ng-template>
+
+<div *ngTemplateOutlet="loading"></div> 
+
+<!--------------------------------------------------------------------------->
+
+<div *ngIf="lessons">
+  <div class="lesson" *ngFor="let lesson of lessons">
+      <div class="lesson-detail">
+          {{lesson | json}}
+      </div>
+  </div>
+</div>
+
+<!--------------------------------------------------------------------------->
+
+<ng-template #estimateTemplate let-lessonsCounter="estimate">
+  <div> Approximately {{lessonsCounter}} lessons ...</div>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="estimateTemplate;context:ctx"></ng-container>
+
+
+<!--------------------------------------------------------------------------->
+
+
+
+
